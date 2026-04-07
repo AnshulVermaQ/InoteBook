@@ -11,7 +11,7 @@ const NoteState = (props) => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': localStorage.getItem('token')
+                'auth-token': getAuthToken(), // Use a secure method to retrieve the token
             }
         });
         const json = await response.json();
