@@ -8,7 +8,7 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ const Login = (props) => {
         console.log(json);
         if (json.success) {
             // Save the auth token and redirect
-            localStorage.setItem('token', json.authtoken);
+            // Set token in HttpOnly cookie instead of localStorage
             navigate("/");
         } else {
             alert("Invalid credentials");
