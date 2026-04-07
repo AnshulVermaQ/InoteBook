@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post('/createuser', [
@@ -24,7 +24,7 @@ router.post('/createuser', [
       return res.status(400).json({ error: "Sorry a user with this email already exists" });
     }
     const salt = await bcrypt.genSalt(10);
-    const secPass = await bcrypt.hash(req.body.password, salt);
+    const secPass = await bcrypt.hash(req.body.password, salt).catch(err => { return res.status(500).send('Error hashing password'); });
 
     user = await User.create({
       name: req.body.name,
@@ -86,7 +86,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-    return res.send(user);
+    return res.send({ name: user.name, email: user.email });
   } catch (error) {
     console.error(error.message);
     return res.status(500).send("Internal Server Error");
