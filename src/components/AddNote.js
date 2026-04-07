@@ -9,7 +9,7 @@ const AddNote = () => {
 
     const handleClick = (e)=>{
         e.preventDefault();
-        addNote(note.title, note.description, note.tag);
+        if (note.title.length >= 5 && note.description.length >= 5) { addNote(note.title, note.description, note.tag); }
         setNote({title: "", description: "", tag: ""})
     }
 
