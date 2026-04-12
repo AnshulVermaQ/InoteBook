@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || 'default_secret';
 
 const fetchuser = (req, res, next) => {
     const authHeader = req.header('Authorization');
     if (!authHeader) {
-        return res.status(401).send({ error: "Please authenticate using a valid token" });
+        return res.status(401).send({ error: error.message });
     }
 
     const token = authHeader.split(' ')[1];
