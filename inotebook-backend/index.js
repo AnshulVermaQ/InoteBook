@@ -6,7 +6,7 @@ connectToMongo();
 const app = express()
 const port = 5000
 
-app.use(cors({ origin: 'https://your-trusted-origin.com' }))
+app.use(cors({ origin: ['https://your-trusted-origin.com'], credentials: true }))
 app.use(express.json())
 
 // Available Routes

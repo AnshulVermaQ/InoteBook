@@ -19,7 +19,7 @@ const Signup = () => {
         const json = await response.json();
         
         if (json.success) {
-            // Save the auth token and redirect
+            // Save the auth token in HttpOnly cookies and redirect
             // Use HttpOnly cookies instead of localStorage for tokens
             navigate("/");
         } 

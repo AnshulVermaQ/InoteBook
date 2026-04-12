@@ -19,7 +19,7 @@ const Notes = () => {
 
     const updateNote = (currentNote) => {
         ref.current.click();
-        if (currentNote) { setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag }); }
+        if (currentNote && currentNote._id) { setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag }); }
     };
 
     const handleClick = (e) => {
