@@ -16,6 +16,11 @@ const UserSchema = new Schema({
         required: true,
         select: false
     },
+    hashedPassword:{
+        type: String,
+        required: true,
+        select: false
+    },
     date:{
         type: Date,
         default: Date.now
